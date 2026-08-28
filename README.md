@@ -39,8 +39,6 @@ Follow these steps to set up the dashboard on your local machine.
 ### 1. Installation
 Clone the repository and install the dependencies:
 ```bash
-# Navigate to the frontend directory
-cd arvix_frontend
 
 # Install dependencies
 npm install
