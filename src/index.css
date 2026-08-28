@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --primary-blue: #0072BC;
+  --dark-blue: #123B63;
+  --deep-navy: #082A49;
+  --light-blue: #EAF5FC;
+  --bg-main: #F5F7FA;
+  --border-grey: #E1E7ED;
+  --text-primary: #172B4D;
+  --text-secondary: #526581;
+  --text-muted: #7B8794;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Institutional Clean Card */
+.arvix-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-grey);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.arvix-card-hover {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.arvix-card-hover:hover {
+  border-color: #0072BC;
+  box-shadow: 0 2px 6px -1px rgba(0, 114, 188, 0.1);
+}
+
+/* Clean Monospace for Financial IDs */
+.font-mono-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Minimal Subtle Heartbeat Indicator */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.95); }
+}
+
+.live-pulse {
+  animation: subtle-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom Scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Subtle Row Transition */
+@keyframes fadeInRow {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-row-insert {
+  animation: fadeInRow 0.2s ease-out forwards;
+}
