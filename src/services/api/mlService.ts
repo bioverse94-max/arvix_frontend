@@ -4,8 +4,8 @@
  */
 
 import type { Transaction } from "../../types/transaction";
+import { API_BASE_URL } from "../../config";
 
-const API_BASE_URL = import.meta.env.VITE_ML_API_URL || "";
 
 export interface ModelHealthResponse {
   status: "ready" | "initializing" | "error" | "offline";
@@ -109,7 +109,7 @@ class MLService {
 
   public async getDashboardStats() {
     try {
-      const res = await fetch(`${API_BASE_URL}/api/dashboard/stats`);
+      const res = await fetch(`${API_BASE_URL}/dashboard/stats`);
       if (!res.ok) return null;
       return await res.json();
     } catch (e) {
@@ -119,7 +119,7 @@ class MLService {
 
   public async getAccountIntelligence(accountId: string) {
     try {
-      const res = await fetch(`${API_BASE_URL}/api/accounts/${accountId}/intelligence`);
+      const res = await fetch(`${API_BASE_URL}/accounts/${accountId}/intelligence`);
       if (!res.ok) return null;
       return await res.json();
     } catch (e) {

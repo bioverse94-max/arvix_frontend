@@ -24,6 +24,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import {
+import { API_BASE_URL } from "../../config";
   ArrowRight,
   Radio,
   ListOrdered,
@@ -65,7 +66,7 @@ export const FraudDashboard: React.FC = () => {
     graphService.getGraphData().then(setGraphData);
     graphService.getClusters().then(setClusters);
     
-    fetch("/api/analytics/hourly-activity")
+    fetch(`${API_BASE_URL}/analytics/hourly-activity`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {

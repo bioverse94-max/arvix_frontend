@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { API_BASE_URL } from "../../config";
 
 type PartnerType = "customer" | "institution";
 
@@ -64,7 +65,7 @@ function Onboarding() {
 
     try {
       // 1. Call backend registration API
-      const res = await fetch("/api/auth/register", {
+      const res = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

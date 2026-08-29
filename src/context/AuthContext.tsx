@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { API_BASE_URL } from "../config";
 
 export interface User {
   id: string;
@@ -57,7 +58,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string, password?: string): Promise<boolean> => {
     try {
       // 1. Try real backend API authentication
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

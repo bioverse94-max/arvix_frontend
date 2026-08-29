@@ -1,6 +1,7 @@
 import { mockTransactions } from "../data/mock/transactions";
 import type { Transaction, TransactionSignal } from "../types/transaction";
 import { mlService } from "./api/mlService";
+import { API_BASE_URL } from "../config";
 
 type TransactionListener = (tx: Transaction) => void;
 
@@ -12,7 +13,7 @@ class TransactionService {
 
   public async getTransactions(): Promise<Transaction[]> {
     try {
-      const res = await fetch("/api/transactions?page_size=100");
+      const res = await fetch(`${API_BASE_URL}/transactions?page_size=100`);
       if (res.ok) {
         const data = await res.json();
         if (data && data.transactions && data.transactions.length > 0) {

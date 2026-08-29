@@ -1,5 +1,6 @@
 import { mockSystemEngines, mockAuditLogs } from "../data/mock/systemHealth";
 import type { SystemEngineHealth, AuditLogEntry } from "../types/system";
+import { API_BASE_URL } from "../config";
 
 class SystemService {
   private engines: SystemEngineHealth[] = [...mockSystemEngines];
@@ -8,8 +9,8 @@ class SystemService {
   public async getEngineHealth(): Promise<SystemEngineHealth[]> {
     try {
       const [modelRes, streamRes] = await Promise.allSettled([
-        fetch("/api/model/health"),
-        fetch("/api/stream/metrics"),
+        fetch(`${API_BASE_URL}/model/health`),
+        fetch(`${API_BASE_URL}/stream/metrics`),
       ]);
 
       if (modelRes.status === "fulfilled" && modelRes.value.ok) {
@@ -39,7 +40,7 @@ class SystemService {
 
   public async getAuditLogs(): Promise<AuditLogEntry[]> {
     try {
-      const res = await fetch("/api/audit-logs?page_size=100");
+      const res = await fetch(`${API_BASE_URL}/audit-logs?page_size=100`);
       if (res.ok) {
         const data = await res.json();
         if (data && data.logs && data.logs.length > 0) {

@@ -1,10 +1,11 @@
 import { mockClusters, globalGraphData } from "../data/mock/fraudClusters";
 import type { FraudCluster, GraphData } from "../types/graph";
+import { API_BASE_URL } from "../config";
 
 class GraphService {
   public async getGraphData(): Promise<GraphData> {
     try {
-      const res = await fetch("/api/graph/data");
+      const res = await fetch(`${API_BASE_URL}/graph/data`);
       if (res.ok) {
         const data = await res.json();
         if (data && data.nodes && data.nodes.length > 0) {
@@ -22,7 +23,7 @@ class GraphService {
 
   public async getClusters(): Promise<FraudCluster[]> {
     try {
-      const res = await fetch("/api/graph/clusters");
+      const res = await fetch(`${API_BASE_URL}/graph/clusters`);
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
@@ -37,7 +38,7 @@ class GraphService {
 
   public async getClusterById(id: string): Promise<FraudCluster | undefined> {
     try {
-      const res = await fetch(`/api/graph/clusters/${id}`);
+      const res = await fetch(`${API_BASE_URL}/graph/clusters/${id}`);
       if (res.ok) {
         return await res.json();
       }

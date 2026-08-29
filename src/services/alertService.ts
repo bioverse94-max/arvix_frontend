@@ -1,5 +1,6 @@
 import { mockFraudAlerts } from "../data/mock/fraudAlerts";
 import type { FraudAlert, AlertStatus } from "../types/fraud";
+import { API_BASE_URL } from "../config";
 
 type AlertListener = (alert: FraudAlert) => void;
 
@@ -9,7 +10,7 @@ class AlertService {
 
   public async getAlerts(): Promise<FraudAlert[]> {
     try {
-      const res = await fetch("/api/alerts?page_size=100");
+      const res = await fetch(`${API_BASE_URL}/alerts?page_size=100`);
       if (res.ok) {
         const data = await res.json();
         if (data && data.alerts && data.alerts.length > 0) {

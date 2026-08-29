@@ -1,12 +1,13 @@
 import { mockCases } from "../data/mock/cases";
 import type { FraudCase, CaseStatus, CaseNote } from "../types/case";
+import { API_BASE_URL } from "../config";
 
 class CaseService {
   private cases: FraudCase[] = [...mockCases];
 
   public async getCases(): Promise<FraudCase[]> {
     try {
-      const res = await fetch("/api/cases?page_size=100");
+      const res = await fetch(`${API_BASE_URL}/cases?page_size=100`);
       if (res.ok) {
         const data = await res.json();
         if (data && data.cases && data.cases.length > 0) {
@@ -42,7 +43,7 @@ class CaseService {
 
   public async getCaseById(id: string): Promise<FraudCase | undefined> {
     try {
-      const res = await fetch(`/api/cases/${id}`);
+      const res = await fetch(`${API_BASE_URL}/cases/${id}`);
       if (res.ok) {
         const c = await res.json();
         if (c) {

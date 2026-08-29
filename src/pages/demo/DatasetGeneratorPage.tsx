@@ -15,6 +15,7 @@ import { transactionService } from "../../services/transactionService";
 import type { Transaction } from "../../types/transaction";
 import { RiskBadge } from "../../components/common/RiskBadge";
 import { StatusBadge } from "../../components/common/StatusBadge";
+import { API_BASE_URL } from "../../config";
 
 interface ScenarioOption {
   id: string;
@@ -140,7 +141,7 @@ export const DatasetGeneratorPage: React.FC = () => {
   const handleDownloadCSV = async () => {
     setIsDownloading(true);
     try {
-      const res = await fetch("/api/generator/export/csv");
+      const res = await fetch(`${API_BASE_URL}/generator/export/csv`);
       if (!res.ok) throw new Error("Failed to export dataset CSV");
       const blob = await res.blob();
       const url = window.URL.createObjectURL(blob);
