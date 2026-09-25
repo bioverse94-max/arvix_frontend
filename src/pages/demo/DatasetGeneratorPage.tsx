@@ -73,7 +73,7 @@ const AVAILABLE_SCENARIOS: ScenarioOption[] = [
 export const DatasetGeneratorPage: React.FC = () => {
   const [numAccounts, setNumAccounts] = useState<number>(150);
   const [numTransactions, setNumTransactions] = useState<number>(300);
-  const [seed, setSeed] = useState<number>(42);
+  const [seed, setSeed] = useState<number>(() => Math.floor(Math.random() * 1000000));
   const [selectedScenarios, setSelectedScenarios] = useState<string[]>([
     "mule_network",
     "circular_flow",
@@ -130,6 +130,7 @@ export const DatasetGeneratorPage: React.FC = () => {
         const fresh = await transactionService.getTransactions();
         setPreviewTransactions(fresh);
         window.dispatchEvent(new Event("arvix-data-refreshed"));
+        setSeed(Math.floor(Math.random() * 1000000));
       }
     } catch (err) {
       console.error("Failed to generate dataset:", err);
