@@ -56,7 +56,7 @@ class AlertService {
   public async updateAlertStatus(alertId: string, status: AlertStatus): Promise<boolean> {
     try {
       const backendStatus = status === "NEW" ? "OPEN" : status === "RESOLVED" ? "RESOLVED" : status === "DISMISSED" ? "DISMISSED" : "INVESTIGATING";
-      await fetch(`/api/alerts/${alertId}`, {
+      await fetch(`${API_BASE_URL}/alerts/${alertId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: backendStatus }),

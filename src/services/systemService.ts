@@ -67,7 +67,7 @@ class SystemService {
 
   public async addAuditLog(entry: Omit<AuditLogEntry, "id" | "timestamp">): Promise<void> {
     try {
-      await fetch("/api/audit-logs", {
+      await fetch(`${API_BASE_URL}/audit-logs`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

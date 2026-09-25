@@ -79,7 +79,7 @@ class CaseService {
   public async updateCaseStatus(caseId: string, status: CaseStatus): Promise<boolean> {
     try {
       const backendStatus = status === "NEW" ? "OPEN" : status === "RESOLVED_FROZEN" ? "CLOSED_CONFIRMED" : status === "CLEARED_LEGITIMATE" ? "CLOSED_FALSE_POSITIVE" : "INVESTIGATING";
-      await fetch(`/api/cases/${caseId}`, {
+      await fetch(`${API_BASE_URL}/cases/${caseId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: backendStatus }),
@@ -99,7 +99,7 @@ class CaseService {
 
   public async addCaseNote(caseId: string, noteText: string, authorName: string = "Investigator"): Promise<boolean> {
     try {
-      await fetch(`/api/cases/${caseId}/notes`, {
+      await fetch(`${API_BASE_URL}/cases/${caseId}/notes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ note: noteText, actor: authorName }),

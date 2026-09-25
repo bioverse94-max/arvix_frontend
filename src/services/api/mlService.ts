@@ -56,7 +56,7 @@ class MLService {
 
   public async getHealth(): Promise<ModelHealthResponse | null> {
     try {
-      const res = await fetch(`${API_BASE_URL}/api/model/health`, {
+      const res = await fetch(`${API_BASE_URL}/model/health`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -93,7 +93,7 @@ class MLService {
         fraud_scenario: tx.remarks || null,
       };
 
-      const res = await fetch(`${API_BASE_URL}/api/predict`, {
+      const res = await fetch(`${API_BASE_URL}/predict`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

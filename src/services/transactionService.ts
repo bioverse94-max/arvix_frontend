@@ -73,7 +73,7 @@ class TransactionService {
 
   public async triggerSyntheticGeneration(options?: { num_accounts?: number; num_transactions?: number }): Promise<Transaction[]> {
     try {
-      const res = await fetch("/api/generator/run", {
+      const res = await fetch(`${API_BASE_URL}/generator/run`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
